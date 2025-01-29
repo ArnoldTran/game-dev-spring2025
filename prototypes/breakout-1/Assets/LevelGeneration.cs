@@ -21,6 +21,12 @@ public GameObject Brick;
             float yPos = (j - (size.y - 1) * 0.5f) * offset.y;
 
             newBrick.transform.position = transform.position + new UnityEngine.Vector3(xPos, yPos, 0);
+
+            SpriteRenderer renderer = newBrick.GetComponent<SpriteRenderer>();
+                if (renderer != null)
+                {
+                    renderer.color = new Color(Random.value, Random.value, Random.value);
+                }
             }
         }
     }
