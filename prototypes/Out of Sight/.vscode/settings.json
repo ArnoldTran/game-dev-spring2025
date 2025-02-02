@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Out of Sight.sln"
+    "dotnet.defaultSolution": "Out of Sight.sln",
+    "dotnet.preferCSharpExtension": true
 }

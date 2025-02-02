@@ -182,6 +182,11 @@ public class GameManager : MonoBehaviour
         return this.ruleset;
     }
 
+    public void ToggleRuleset()
+{
+    this.ruleset = (this.ruleset == 0) ? 1 : 0;
+}
+
     public bool getGameStarted(){
         return gameStarted;
     }
