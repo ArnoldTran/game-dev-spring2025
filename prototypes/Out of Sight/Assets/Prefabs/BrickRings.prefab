@@ -44,8 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b2e39b35995a2458f543f3c2451bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brickPrefab: {fileID: 647700202205520901, guid: 626452c1aa91e6c43bc851e77234e238, type: 3}
+  brickPrefabs:
+  - {fileID: 647700202205520901, guid: 626452c1aa91e6c43bc851e77234e238, type: 3}
+  - {fileID: 647700202205520901, guid: 626452c1aa91e6c43bc851e77234e238, type: 3}
+  - {fileID: 4090144977637578026, guid: 2ea4b1cbe91046442a4635cde9a4edb0, type: 3}
+  - {fileID: 647700202205520901, guid: 626452c1aa91e6c43bc851e77234e238, type: 3}
   numRows: 4
+  numBricksPerRow: 0a0000001e000000080000003c000000
   radiusStep: 1.2
   brickWidth: 0.5
   speed: 1

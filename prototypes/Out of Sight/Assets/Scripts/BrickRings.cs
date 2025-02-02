@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class BrickRings : MonoBehaviour
 {
-    public GameObject brickPrefab;
+    // Array of prefabs for each row
+    public GameObject[] brickPrefabs;
     public int numRows = 4;
+    public int[] numBricksPerRow;
     public float radiusStep = 1.5f;
-    public float brickWidth = 1.0f;
+    public float brickWidth = 0.4f;
     public float speed = 1f;
 
     GameObject[,] bricks;
@@ -19,7 +21,6 @@ public class BrickRings : MonoBehaviour
 
     void Awake()
     {
-        //Assumption made for 4 rows here
         this.rows = new GameObject[numRows];
         this.numOfRingsPerRow = new int[numRows];
         this.bricks = generateBricks();
@@ -27,7 +28,6 @@ public class BrickRings : MonoBehaviour
 
     void Update()
     {
-
         if (GameManager.sharedInstance.getRuleset() == 1)
         {
             HandleDirectRowRotation(); // Mode 1: Direct row rotation with predefined keys
@@ -38,16 +38,18 @@ public class BrickRings : MonoBehaviour
         }
     }
 
-    GameObject[,] generateBricks(){
-        GameObject[,] brickList = new GameObject[numRows,60];
+    GameObject[,] generateBricks()
+    {
+        GameObject[,] brickList = new GameObject[numRows, 60];
         for (int row = 0; row < numRows; row++)
         {
             float radius = (row + 1) * radiusStep;
-            int bricksInThisRow = Mathf.FloorToInt((2 * Mathf.PI * radius) / brickWidth);
+            int bricksInThisRow = numBricksPerRow[row];
             GameObject rowParent = new GameObject("Row" + (row + 1));
             rowParent.transform.SetParent(gameObject.transform);
             rowParent.transform.position = Vector3.zero;
             rows[row] = rowParent;
+
             for (int i = 0; i < bricksInThisRow; i++)
             {
                 float angle = (i / (float)bricksInThisRow) * 360f;
@@ -57,15 +59,23 @@ public class BrickRings : MonoBehaviour
                     0f
                 );
 
-                GameObject brick = Instantiate(brickPrefab, position, Quaternion.identity,rowParent.transform);
-                activeBricks++;
+                // Ensure we have a prefab assigned for this row
+                if (brickPrefabs.Length > row && brickPrefabs[row] != null)
+                {
+                    // Select the prefab for this row from the array
+                    GameObject brick = Instantiate(brickPrefabs[row], position, Quaternion.identity, rowParent.transform);
+                    activeBricks++;
 
-                // Adjust brick size and rotation
-                brick.transform.localScale = new Vector3(0.4f, 0.5f, 1.0f);
-                Vector3 directionToCenter = -position.normalized;
-                float brickAngle = Mathf.Atan2(directionToCenter.y, directionToCenter.x) * Mathf.Rad2Deg;
-                brick.transform.rotation = Quaternion.Euler(0, 0, brickAngle - 90);
-                brickList[row,i] = brick;
+                    // Adjust rotation
+                    Vector3 directionToCenter = -position.normalized;
+                    float brickAngle = Mathf.Atan2(directionToCenter.y, directionToCenter.x) * Mathf.Rad2Deg;
+                    brick.transform.rotation = Quaternion.Euler(0, 0, brickAngle - 90);
+                    brickList[row, i] = brick;
+                }
+                else
+                {
+                    Debug.LogWarning("No brick prefab assigned for row " + row);
+                }
             }
         }
         return brickList;
@@ -76,12 +86,12 @@ public class BrickRings : MonoBehaviour
         float rotationAmount = speed * Time.deltaTime * 300f;
 
         // Row 1
-        if (Input.GetKey(KeyCode.Q)) rows[0].transform.Rotate(Vector3.forward * rotationAmount);
-        if (Input.GetKey(KeyCode.E)) rows[0].transform.Rotate(Vector3.back * rotationAmount);
+        if (Input.GetKey(KeyCode.A)) rows[0].transform.Rotate(Vector3.forward * rotationAmount);
+        if (Input.GetKey(KeyCode.D)) rows[0].transform.Rotate(Vector3.back * rotationAmount);
 
         // Row 2
-        if (Input.GetKey(KeyCode.U)) rows[1].transform.Rotate(Vector3.forward * rotationAmount);
-        if (Input.GetKey(KeyCode.O)) rows[1].transform.Rotate(Vector3.back * rotationAmount);
+        if (Input.GetKey(KeyCode.J)) rows[1].transform.Rotate(Vector3.forward * rotationAmount);
+        if (Input.GetKey(KeyCode.L)) rows[1].transform.Rotate(Vector3.back * rotationAmount);
 
         // Row 3
         if (Input.GetKey(KeyCode.A)) rows[2].transform.Rotate(Vector3.forward * rotationAmount);
@@ -106,24 +116,34 @@ public class BrickRings : MonoBehaviour
     }
 
     public int GetActiveBricks()
-{
-    return activeBricks;
-}
+    {
+        return activeBricks;
+    }
 
-    public void resetRings(){//Assumption of row number each time 15,30,45,60
-        for(int i = 0; i<numRows;i++){
-            for(int j=0;j<(i+1)*15;j++){
-                bricks[i,j].SetActive(true);
+    public void resetRings()
+    {
+        for (int i = 0; i < numRows; i++)
+        {
+            for (int j = 0; j < numBricksPerRow[i]; j++)
+            {
+                if (bricks[i, j] != null)
+                {
+                    bricks[i, j].SetActive(true);
+                }
             }
         }
     }
 
-    public int getActiveCount(){
+    public int getActiveCount()
+    {
         int activeNumber = 0;
-        for(int i = 0; i<numRows;i++){
-            for(int j=0;j<(i+1)*15;j++){
 
-                if(bricks[i,j].activeSelf){
+        for (int i = 0; i < numRows; i++)
+        {
+            for (int j = 0; j < numBricksPerRow[i]; j++)
+            {
+                if (bricks[i, j] != null && bricks[i, j].activeSelf)
+                {
                     activeNumber++;
                 }
             }
