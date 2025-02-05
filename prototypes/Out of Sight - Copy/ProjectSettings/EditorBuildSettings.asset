@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: ec0fdd3f7e6d9154eabb4a7801ea89b2
   - enabled: 1
@@ -14,40 +14,40 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OutOfSight.unity
     guid: 29f690df78e59c245adc051b291afd41
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AntiBreakout2.unity
     guid: f3b765c20d4361745b2ced3c4ce72751
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AntiBreakout1.unity
     guid: 25f293311a67f914783752e45f52bc04
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewAntiBreakout2.unity
     guid: 7491671ed31742546bdb3e9efdeeadd7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AB2Levels/AB2LevelSelect.unity
     guid: cd9edd0f9b3abb44eb522a359b671f32
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AB2Levels/AB2LV1.unity
     guid: c146b6ec02e415e4b8888b3834660b46
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AB2Levels/AB2LV2.unity
     guid: 778c69c704fdf284887e26b0ac84515a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AB2Levels/AB2LV3.unity
     guid: aa6263b44fa3eeb4fb3d3ea4169f1a06
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AB2Levels/AB2LV4.unity
     guid: b06d73bb51d41364f84da358144b4bc3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AB2Levels/AB2LV5.unity
     guid: 3e64fbd4889d328498ac3edc8877d8e1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AB2Levels/AB2LV6.unity
     guid: ededed4ec0e28f04f97022004bd72e23
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AB2Levels/AB2LV7.unity
     guid: 82965cc58befdd348a54f85fe3e8eb06
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AB2Levels/AB2LV8.unity
     guid: 750d83257c129c145a9d05968df8b866
   - enabled: 1
