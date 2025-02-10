@@ -1,5 +1,4 @@
 # Breakout Reflection
----
 ## Prototype 1
 
 - What Were You Experimenting With Your Prototype?
@@ -14,7 +13,10 @@ I learned how to set up basic game mechanics such as ball movement and collision
 
 There wasn't too much feedback to the game as it was very basic. I did learn about changing the paddle's collider body to be more round so the ball bounces better.
 
+<img src="./images/Breakout-1.png" alt="Breakout gameplay" align="right" width="350">
 [Play Breakout Prototype 1](http://ArnoldTran.github.io/game-dev-spring2025/builds/breakout-1)
+
+<br><br><br><br><br><br>
 
 ## Prototype 2
 
