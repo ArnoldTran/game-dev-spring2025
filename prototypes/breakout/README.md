@@ -64,5 +64,16 @@ I learned that looping the ring selection would make the game feel better to pla
 ## Prototype 4
 
 - What Were You Experimenting With Your Prototype?
+
+This build mostly had some final touches added onto the game, with no new features being added really. Most of the changes were polishing up the design.
+
 - What Did You Learn From Your Prototype?
+
+Polishing the game even a little bit can go a long way towards better gameplay.
+
 - Did You Learn Anything From Your Playtesters in Class? What?
+
+Balancing the game's difficulty is very challenging. However, even if the game is difficult that can be a reason as to why people continue playing the game.
+
+<img src="./images/Breakout-4.png" alt="Breakout gameplay" align="right" width="350">
+[Play Breakout Prototype 4](http://ArnoldTran.github.io/game-dev-spring2025/builds/breakout-4)
