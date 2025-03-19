@@ -7,14 +7,10 @@ My main experiment was to have more of a theme regarding my game, so I spent tim
 
 - What Did You Learn From Your Prototype?
 
-I learned ways to affect different velocities of the player, as well as camera movement. Additionally, the stamina meter helps to limit the player's movement and make the game more skill based by having something to manage.
+I learned ways to affect different velocities of the player, as well as camera movement. Additionally, the stamina meter helps to limit the player's movement and make the game more skill based by having something to manage. However, when the stamina meter reached 0, it resulted in the player stuttering if they tried to sprint, causing the bar to increase and decrease from 0 rapidly.
 
-- Did You Learn Anything From Your Playtesters in Class? What?
-
-People suggested to implement more towards the stamina meter. Adding collectables that increase the stamina meter can change where the player can access and move to in the game.
-
-<img src="./images/Breakout-1.png" alt="Platformer gameplay" align="right" width="350">
-[Play Breakout Prototype 1](http://ArnoldTran.github.io/game-dev-spring2025/builds/breakout-1)
+<img src="./images/Platformer-1.png" alt="Platformer gameplay" align="right" width="350">
+[Play Platformer Prototype 1] (http://ArnoldTran.github.io/game-dev-spring2025/builds/platformer-1)
 
 <br><br><br><br><br><br>
 
@@ -22,58 +18,11 @@ People suggested to implement more towards the stamina meter. Adding collectable
 
 - What Were You Experimenting With Your Prototype?
 
-I experimented with the idea of controlling the bricks instead of a paddle. The two prototypes follow this idea, where in one the bricks are in a ring format and you rotate them with the ball in the center. The other is a swarm of bricks where the goal is to collide with the ball in a given time limit to break all of the bricks.
+I experimented with adding collectables into the game that would impact the player's progression. The collectables were seeds that, when picked up, would decrease the cost of sprinting or gliding. I attempted to use Cinemachine for the camera controls. 
 
 - What Did You Learn From Your Prototype?
 
-I learned to intantiate bricks in a circular pattern. I also learned how to work with a game manager and ui manager to better improve the game's visuals and organization. I messed around with different control schemes to see which felt better for players to use to control the rings.
+I learned that adding the collectables gives the player a goal in progression for the game. The seeds allow the player to have a target in mind. By limiting the stamina meter with collectables, I can have specific areas only accessable after collecting enough of the seeds. Cinemachine was not functioning well for me, so I reverted my camera controls.
 
-- Did You Learn Anything From Your Playtesters in Class? What?
-
-Playtesters told me that an indicator to show which brick ring was selected would help their gameplay. The Swarm prototype felt more difficult to control with how the stop function worked.
-
-<img src="./images/Breakout-2a.png" alt="Breakout gameplay" align="right" width="350">
-[Play Breakout Prototype 2a](http://ArnoldTran.github.io/game-dev-spring2025/builds/breakout-2a)
-
-<br><br><br><br><br><br><br><br>
-
-<img src="./images/Breakout-2b.png" alt="Breakout gameplay" align="right" width="350">
-[Play Breakout Prototype 2b](http://ArnoldTran.github.io/game-dev-spring2025/builds/breakout-2b)
-
-<br><br><br><br><br><br>
-
-## Prototype 3
-
-- What Were You Experimenting With Your Prototype?
-
-I experimented with a ring selection system to better improve the player's feel of the game. Additionally, to create more interest in the game we added levels.
-
-- What Did You Learn From Your Prototype?
-
-Level balancing is difficult to manage. However, the game felt more like a full game with the addition of levels.
-
-- Did You Learn Anything From Your Playtesters in Class? What?
-
-I learned that looping the ring selection would make the game feel better to play. Additionally, the game itself is difficult, so maybe I need to change how the levels are set up.
-
-<img src="./images/Breakout-3.png" alt="Breakout gameplay" align="right" width="350">
-[Play Breakout Prototype 3](http://ArnoldTran.github.io/game-dev-spring2025/builds/breakout-3)
-
-<br><br><br><br><br><br>
-
-## Prototype 4
-
-- What Were You Experimenting With Your Prototype?
-
-This build mostly had some final touches added onto the game, with no new features being added really. Most of the changes were polishing up the design.
-
-- What Did You Learn From Your Prototype?
-
-Polishing the game even a little bit can go a long way towards better gameplay.
-
-- Did You Learn Anything From Your Playtesters in Class? What?
-
-Balancing the game's difficulty is very challenging. However, even if the game is difficult that can be a reason as to why people continue playing the game.
-
-<img src="./images/Breakout-4.png" alt="Breakout gameplay" align="right" width="350">
-[Play Breakout Prototype 4](http://ArnoldTran.github.io/game-dev-spring2025/builds/breakout-4)
+<img src="./images/Platformer-final.png" alt="Platformer gameplay" align="right" width="350">
+[Play Platformer Prototype Final] (http://ArnoldTran.github.io/game-dev-spring2025/builds/platformer-final)
