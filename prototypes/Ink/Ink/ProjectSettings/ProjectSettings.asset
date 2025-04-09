@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 020b913fe2c821e4cb33f4f0ce06744f
+  productGUID: 9dba23b83aab81b429d7f53741cc72cf
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Dialogue
+  productName: Ink
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -799,7 +799,7 @@ PlayerSettings:
   webGLTemplate: APPLICATION:Default
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
-  webGLCompressionFormat: 2
+  webGLCompressionFormat: 0
   webGLWasmArithmeticExceptions: 0
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
@@ -817,7 +817,7 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    WebGL: INK_RUNTIME;INK_EDITOR
+    Standalone: INK_RUNTIME;INK_EDITOR
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -838,14 +838,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Dialogue
+  metroPackageName: Ink
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: Dialogue
+  metroApplicationDescription: Ink
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -916,10 +916,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 1a5cb5d1-7a65-4220-85dd-5e99cfcfca63
+  cloudProjectId: 6bf126e1-12e1-4d77-8c30-5337e20f0620
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Dialogue
+  projectName: Ink
   organizationId: argoat
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
