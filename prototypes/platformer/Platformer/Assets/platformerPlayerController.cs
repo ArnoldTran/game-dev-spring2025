@@ -15,22 +15,23 @@ public class platformerPlayerController : MonoBehaviour
     private bool isGrounded, wasSprinting;
 
     [SerializeField] private float moveSpeed = 6f;
-    [SerializeField] private float sprintSpeed = 10f; // Sprint speed
+    [SerializeField] private float sprintSpeed = 10f;
     [SerializeField] private float jumpForce = 8f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float glideGravity = -2f;
 
     // Stamina
-    [SerializeField] private UnityEngine.UI.Image StaminaBar;
+    [SerializeField] private Image StaminaBar;
     [SerializeField] public float stamina, maxStamina;
     private bool isGliding = false;
     private bool isSprinting = false;
+    private bool isExhausted = false; // 👈 Added
     public float glideCost = 20f;
-    public float sprintCost = 10f; // Stamina cost per second when sprinting
-    public float staminaRegenRate = 40f; // Regeneration rate
+    public float sprintCost = 10f;
+    public float staminaRegenRate = 40f;
 
     // Seed Tracking
-    public int seedCount = 0; // Tracks the number of seeds collected
+    public int seedCount = 0;
 
     void Start()
     {
@@ -40,19 +41,27 @@ public class platformerPlayerController : MonoBehaviour
 
     void Update()
     {
-        isGrounded = cc.isGrounded; // Check if Player is on ground
-        
+        isGrounded = cc.isGrounded;
+
         float hAxis = Input.GetAxis("Horizontal");
         float vAxis = Input.GetAxis("Vertical");
-        
         bool isMoving = hAxis != 0 || vAxis != 0;
-        isSprinting = isGrounded && Input.GetKey(KeyCode.LeftShift) && stamina > 0 && isMoving;
-        
-        // Update costs based on seed count (Reduce by 5 per seed)
+
+        // Update exhaustion state
+        if (stamina <= 0)
+        {
+            isExhausted = true; // 👈 Now exhausted
+        }
+        else if (stamina >= maxStamina)
+        {
+            isExhausted = false; // 👈 Recovered
+        }
+
+        // Update costs with seeds
         float reducedGlideCost = Mathf.Max(0, glideCost - (5 * seedCount));
         float reducedSprintCost = Mathf.Max(0, sprintCost - (5 * seedCount));
 
-        // Animation States
+        // Animation
         if (isGrounded)
         {
             if (isSprinting)
@@ -74,32 +83,20 @@ public class platformerPlayerController : MonoBehaviour
             }
         }
 
-        // Sprint only if on the ground and stamina > 0
-        if (isGrounded)
-        {
-            isSprinting = Input.GetKey(KeyCode.LeftShift) && stamina > 0 && (hAxis != 0 || vAxis != 0);
-            wasSprinting = isSprinting; // Track if sprinting before jumping
-        }
-        else
-        {
-            isSprinting = false; // Disable sprinting mid-air
-        }
-
-        // Glide only if stamina is greater than 0
-        isGliding = Input.GetKey(KeyCode.Space) && !isGrounded && yVelocity < 0 && stamina > 0;
+        // Sprint & Glide Restrictions
+        isSprinting = isGrounded && Input.GetKey(KeyCode.LeftShift) && stamina > 0 && isMoving && !isExhausted; // 👈
+        isGliding = Input.GetKey(KeyCode.Space) && !isGrounded && yVelocity < 0 && stamina > 0 && !isExhausted; // 👈
 
         if (isGrounded)
         {
             yVelocity = -0.5f;
-            // Regenerate stamina when grounded and not sprinting or gliding
             if (!isSprinting && !isGliding)
             {
                 stamina += staminaRegenRate * Time.deltaTime;
             }
         }
 
-        // Movement speed
-        float currentSpeed = wasSprinting ? sprintSpeed : moveSpeed; // Keep sprint speed if airborne after sprinting
+        float currentSpeed = isSprinting ? sprintSpeed : moveSpeed;
 
         velocity = new Vector3(0, yVelocity, 0);
 
@@ -113,13 +110,11 @@ public class platformerPlayerController : MonoBehaviour
         adjustedCamForward.Normalize();
         velocity += adjustedCamForward * vAxis * currentSpeed;
 
-        // Sprint stamina drain
         if (isSprinting)
         {
-            stamina -= reducedSprintCost * Time.deltaTime; // Apply reduced sprint cost
+            stamina -= reducedSprintCost * Time.deltaTime;
         }
 
-        // Jump
         if (cc.isGrounded)
         {
             yVelocity = -0.5f;
@@ -134,18 +129,16 @@ public class platformerPlayerController : MonoBehaviour
             yVelocity += gravity * Time.deltaTime;
         }
 
-        // Glide (Slow Fall)
         if (isGliding)
         {
             yVelocity += (glideGravity - gravity) * Time.deltaTime;
-            stamina -= reducedGlideCost * Time.deltaTime; // Apply reduced glide cost
+            stamina -= reducedGlideCost * Time.deltaTime;
         }
         else if (!isGrounded)
         {
             yVelocity += gravity * Time.deltaTime;
         }
 
-        // Ensure stamina is always between 0 and maxStamina
         stamina = Mathf.Clamp(stamina, 0, maxStamina);
         StaminaBar.fillAmount = stamina / maxStamina;
 
@@ -154,7 +147,6 @@ public class platformerPlayerController : MonoBehaviour
 
         cc.Move(velocity * Time.deltaTime);
 
-        // Duck Rotation
         Vector3 moveDirection = new Vector3(velocity.x, 0, velocity.z);
         if (moveDirection.magnitude > 0.1f)
         {
@@ -162,10 +154,9 @@ public class platformerPlayerController : MonoBehaviour
         }
     }
 
-    // Method to handle seed collection
     public void CollectSeed()
     {
-        seedCount++; // Increase seed count by 1
-        Debug.Log("Seeds Collected: " + seedCount); // Debug to show the current seed count
+        seedCount++;
+        Debug.Log("Seeds Collected: " + seedCount);
     }
 }
